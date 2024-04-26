@@ -84,13 +84,3 @@ library.addEventListener("click", (e) => {
     displayLibrary();
   }
 });
-
-const theBible = new Book(
-  "The Bible",
-  "Vince Vaughn",
-  "1",
-  true,
-  Math.floor(Math.random() * 10000) + 1
-);
-
-myLibrary.push(theBible);
