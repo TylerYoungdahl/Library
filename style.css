@@ -1,5 +1,33 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+
 form {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 5px;
+  width: 300px;
+  margin-bottom: 10px;
   color: white;
+}
+
+#error {
+  color: red;
+  grid-column: 1/3;
+  height: 1em;
+}
+
+#add-book {
+  border: none;
+  border-radius: 6px;
+  padding: 8px;
+  width: 100px;
+  color: white;
+  background-color: rgb(161, 85, 208);
+}
+
+#add-book:hover {
+  cursor: pointer;
 }
 
 #library-container {

@@ -5,6 +5,7 @@ const title = document.getElementById("title");
 const author = document.getElementById("author");
 const pages = document.getElementById("pages");
 const read = document.getElementById("read");
+const error = document.getElementById("error");
 
 const library = document.getElementById("library-container");
 
@@ -22,18 +23,23 @@ Book.prototype.toggleIsRead = function () {
 
 submitBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  const newBook = new Book(
-    title.value,
-    author.value,
-    pages.value,
-    read.checked ? true : false,
-    Math.floor(Math.random() * 10000) + 1
-  );
 
-  myLibrary.push(newBook);
-  console.log(myLibrary);
+  if (title.value === "" || author.value === "" || pages.value === "") {
+    error.textContent = "Please enter all fields";
+  } else {
+    const newBook = new Book(
+      title.value,
+      author.value,
+      pages.value,
+      read.checked ? true : false,
+      Math.floor(Math.random() * 10000) + 1
+    );
 
-  displayLibrary();
+    myLibrary.push(newBook);
+    console.log(myLibrary);
+
+    displayLibrary();
+  }
 });
 
 function displayLibrary() {
