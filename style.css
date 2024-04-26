@@ -4,10 +4,49 @@ form {
 
 #library-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 10px;
 }
 
 .card {
   background-color: white;
+}
+
+.close-btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.close-btn {
+  border: none;
+  border-radius: 3px;
+  margin-top: 0.4em;
+  margin-right: 0.4em;
+  background-color: rgb(241, 126, 126);
+}
+
+.close-btn:hover {
+  cursor: pointer;
+}
+
+.card-header {
+  margin: 0;
+}
+
+.read-btn {
+  border: none;
+  height: 100px;
+}
+
+.read-btn:hover {
+  cursor: pointer;
+}
+
+.read {
+  background-color: darkseagreen;
+}
+
+.not-read {
+  background-color: rgb(241, 126, 126);
 }

@@ -8,40 +8,83 @@ const read = document.getElementById("read");
 
 const library = document.getElementById("library-container");
 
-function Book(title, author, pages, isRead) {
+function Book(title, author, pages, isRead, key) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.isRead = isRead;
+  this.key = key;
 }
 
-function addBookToLibrary(newBook) {
-  myLibrary.push(newBook);
-  console.log(myLibrary);
-}
+Book.prototype.toggleIsRead = function () {
+  this.isRead = !this.isRead;
+};
 
 submitBtn.addEventListener("click", (e) => {
   e.preventDefault();
+  const newBook = new Book(
+    title.value,
+    author.value,
+    pages.value,
+    read.checked ? true : false,
+    Math.floor(Math.random() * 10000) + 1
+  );
 
-  const bookTitle = title.value;
-  const bookAuthor = author.value;
-  const bookPages = pages.value;
-  const bookIsRead = read.value;
+  myLibrary.push(newBook);
+  console.log(myLibrary);
 
-  const book = new Book(bookTitle, bookAuthor, bookPages, bookIsRead);
-
-  const newCard = document.createElement("div");
-  newCard.classList.add("library-container");
-  library.appendChild(newCard);
-  newCard.innerHTML = `<div class="card">
-  <h1 class="card-header">${book.title}</h1>
-  <h2 class="author">${book.author}</h2>
-  <p class="pages">${book.pages}</p>
-  <button class="read">${read.checked ? "Finished" : "Not Finished"}</button>
-</div>`;
-
-  addBookToLibrary(book);
+  displayLibrary();
 });
 
-const bloodMeridian = new Book("Blood Meridian", "Cormac McCarthy", 368, false);
-addBookToLibrary(bloodMeridian);
+function displayLibrary() {
+  library.innerHTML = "";
+  myLibrary.forEach((book) => {
+    const newCard = document.createElement("div");
+    newCard.classList.add("card");
+    library.appendChild(newCard);
+    newCard.innerHTML = `
+    <div class="close-btn-container">
+      <button class="close-btn" data-key=${book.key}>X</button>
+    </div>
+    <h1 class="card-header">${book.title}</h1>
+    <h2 class="author">${book.author}</h2>
+    <p class="pages">${book.pages}</p>
+    <button class="read-btn ${book.isRead ? "read" : "not-read"}" data-key=${
+      book.key
+    }>${book.isRead ? "Finished" : "Not Finished"}</button>`;
+  });
+}
+
+library.addEventListener("click", (e) => {
+  console.log("shsdhjsd");
+  // close button
+  if (e.target.classList.contains("close-btn")) {
+    const key = parseInt(e.target.dataset.key);
+
+    for (i = 0; i < myLibrary.length; i++) {
+      if (myLibrary[i].key === key) {
+        myLibrary.splice(i, 1);
+      }
+    }
+
+    displayLibrary();
+    // read button
+  } else if (e.target.classList.contains("read-btn")) {
+    const key = parseInt(e.target.dataset.key);
+    const book = myLibrary.find((item) => item.key === key);
+
+    book.toggleIsRead();
+
+    displayLibrary();
+  }
+});
+
+const theBible = new Book(
+  "The Bible",
+  "Vince Vaughn",
+  "1",
+  true,
+  Math.floor(Math.random() * 10000) + 1
+);
+
+myLibrary.push(theBible);
