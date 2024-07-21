@@ -9,17 +9,19 @@ const error = document.getElementById("error");
 
 const library = document.getElementById("library-container");
 
-function Book(title, author, pages, isRead, key) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.isRead = isRead;
-  this.key = key;
-}
+class Book {
+  constructor(title, author, pages, isRead, key) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.isRead = isRead;
+    this.key = key;
+  }
 
-Book.prototype.toggleIsRead = function () {
-  this.isRead = !this.isRead;
-};
+  toggleIsRead() {
+    this.isRead = !this.isRead;
+  }
+}
 
 submitBtn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -62,7 +64,6 @@ function displayLibrary() {
 }
 
 library.addEventListener("click", (e) => {
-  console.log("shsdhjsd");
   // close button
   if (e.target.classList.contains("close-btn")) {
     const key = parseInt(e.target.dataset.key);
