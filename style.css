@@ -52,10 +52,13 @@ form {
   margin-top: 0.4em;
   margin-right: 0.4em;
   background-color: rgb(241, 126, 126);
+  transition: box-shadow 0.2s;
 }
 
-.close-btn:hover {
+.close-btn:hover,
+.read-btn:hover {
   cursor: pointer;
+  box-shadow: black 0px 0px 6px;
 }
 
 .card-header {
@@ -65,10 +68,8 @@ form {
 .read-btn {
   border: none;
   height: 100px;
-}
-
-.read-btn:hover {
-  cursor: pointer;
+  border-radius: 3px;
+  transition: box-shadow 0.2s;
 }
 
 .read {
